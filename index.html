@@ -1,40 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fullhouse Logistic</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
     header { background-color: #000; color: white; padding: 20px; display: flex; align-items: center; justify-content: space-between; position: relative; }
-    .logo-container {
-      background-color: #fff;
-      padding: 10px;
-      border-radius: 8px;
-      margin-right: auto;
-    }
+    .logo-container { background-color: #fff; padding: 10px; border-radius: 8px; margin-right: auto; }
     header img { height: 120px; }
     nav a { color: white; margin: 0 10px; text-decoration: none; font-weight: bold; }
-    .hero {
-      background-color: #f2f2f2;
-      padding: 80px 20px;
-      text-align: center;
-    }
+    .hero { background-color: #f2f2f2; padding: 80px 20px; text-align: center; }
     .hero h1 { font-size: 48px; margin-bottom: 20px; }
     .hero p { font-size: 20px; color: #555; }
-    .lang-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-    .lang-toggle button {
-      background-color: orange;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      margin-left: 5px;
-      cursor: pointer;
-    }
+    .lang-toggle { position: absolute; top: 20px; right: 20px; }
+    .lang-toggle button { background-color: orange; color: white; border: none; padding: 5px 10px; margin-left: 5px; cursor: pointer; }
+    section { padding: 60px 20px; max-width: 1000px; margin: auto; }
+    footer { background-color: #000; color: white; text-align: center; padding: 20px; }
   </style>
 </head>
 <body>
@@ -43,11 +25,11 @@
       <img src="logo.png" alt="Fullhouse Logistic Logo">
     </div>
     <nav>
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#team">Our Team</a>
-      <a href="#presentation">Presentation</a>
-      <a href="#contact">Contact</a>
+      <a href="#services" data-en="Services" data-zh="服务">Services</a>
+      <a href="#about" data-en="About" data-zh="关于我们">About</a>
+      <a href="#team" data-en="Our Team" data-zh="团队介绍">Our Team</a>
+      <a href="#presentation" data-en="Presentation" data-zh="公司介绍">Presentation</a>
+      <a href="#contact" data-en="Contact" data-zh="联系我们">Contact</a>
     </nav>
     <div class="lang-toggle">
       <button onclick="setLanguage('en')">EN</button>
@@ -57,23 +39,50 @@
 
   <div class="hero">
     <h1>Fullhouse Logistic</h1>
-    <p data-en="On-Time Delivery, Local Warehousing, and Fulfillment Solutions in California" data-zh="准时交付，加州本地仓储与履约解决方案">
+    <p data-en="On-Time Delivery, Local Warehousing, and Fulfillment Solutions in California"
+       data-zh="准时交付，加州本地仓储与履约解决方案">
       On-Time Delivery, Local Warehousing, and Fulfillment Solutions in California
     </p>
   </div>
 
-  <!-- 示例展示部分，内容可继续添加 -->
+  <section id="services">
+    <h2 data-en="Our Services" data-zh="我们的服务">Our Services</h2>
+    <ul>
+      <li data-en="Local Warehousing in the US" data-zh="美国本地仓储">Local Warehousing in the US</li>
+      <li data-en="Order Fulfillment" data-zh="一件代发">Order Fulfillment</li>
+      <li data-en="Returns Management" data-zh="退货处理">Returns Management</li>
+      <li data-en="Relabeling Services" data-zh="换标服务">Relabeling Services</li>
+    </ul>
+  </section>
+
+  <section id="about">
+    <h2 data-en="About Us" data-zh="关于我们">About Us</h2>
+    <p data-en="Located in Ontario, California, we operate a 40,000 sq ft warehouse providing reliable local logistics services." 
+       data-zh="公司位于美国加州安大略市，拥有40000平方英尺的仓库，提供可靠的本地物流服务。">
+      Located in Ontario, California, we operate a 40,000 sq ft warehouse providing reliable local logistics services.
+    </p>
+  </section>
+
   <section id="team">
     <h2 data-en="Our Team" data-zh="团队介绍">Our Team</h2>
-    <p data-en="Our core operations team has over 10 years of experience in the U.S. warehousing and logistics industry." data-zh="核心运营成员拥有 10 年以上美国本地仓储物流行业经验。">
-      Our core operations team has over 10 years of experience in the U.S. warehousing and logistics industry.
+    <p data-en="Over 10 years of industry experience in U.S. warehousing and logistics." 
+       data-zh="拥有超过10年美国本地仓储物流行业经验。">
+      Over 10 years of industry experience in U.S. warehousing and logistics.
     </p>
   </section>
 
   <section id="presentation">
     <h2 data-en="Company Introduction" data-zh="公司介绍">Company Introduction</h2>
-    <p data-en="Warehouse Location: Ontario, California" data-zh="仓库位置：美国加州安大略市">
-      Warehouse Location: Ontario, California
+    <p data-en="We specialize in FBA prep, return handling, cross-border fulfillment, and last-mile delivery." 
+       data-zh="专注于FBA贴标、退货处理、跨境履约与尾程派送服务。">
+      We specialize in FBA prep, return handling, cross-border fulfillment, and last-mile delivery.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2 data-en="Contact Us" data-zh="联系我们">Contact Us</h2>
+    <p data-en="Email: edwards.zhong@fullhouselogistic.com" data-zh="邮箱：edwards.zhong@fullhouselogistic.com">
+      Email: edwards.zhong@fullhouselogistic.com
     </p>
   </section>
 
@@ -84,7 +93,8 @@
   <script>
     function setLanguage(lang) {
       document.querySelectorAll('[data-en]').forEach(el => {
-        el.textContent = el.getAttribute('data-' + lang);
+        const value = el.getAttribute('data-' + lang);
+        if (value) el.textContent = value;
       });
     }
   </script>
