@@ -22,41 +22,6 @@
     }
     .hero h1 { font-size: 48px; margin-bottom: 20px; }
     .hero p { font-size: 20px; color: #555; }
-    .services, .about, .team, .presentation, .contact {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .services h2, .about h2, .team h2, .presentation h2, .contact h2 {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-    .services ul, .team ul {
-      list-style: none;
-      padding: 0;
-    }
-    .services li, .team li {
-      padding: 10px 0;
-      border-bottom: 1px solid #ccc;
-    }
-    .team-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-    .team-gallery img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    footer {
-      background-color: #000;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
     .lang-toggle {
       position: absolute;
       top: 20px;
@@ -92,61 +57,24 @@
 
   <div class="hero">
     <h1>Fullhouse Logistic</h1>
-    <p data-en="On-Time Delivery, Local Warehousing, and Fulfillment Solutions in California"
-       data-zh="准时交付，加州本地仓储与履约解决方案">
+    <p data-en="On-Time Delivery, Local Warehousing, and Fulfillment Solutions in California" data-zh="准时交付，加州本地仓储与履约解决方案">
       On-Time Delivery, Local Warehousing, and Fulfillment Solutions in California
     </p>
   </div>
 
-  <section id="services" class="services">
-    <h2 data-en="Our Services" data-zh="我们的服务">Our Services</h2>
-    <ul>
-      <li data-en="Local Warehousing in the US" data-zh="美国本地仓储">美国本地仓储</li>
-      <li data-en="Order Fulfillment (One-Piece Drop Shipping)" data-zh="一件代发">一件代发</li>
-      <li data-en="Returns Management" data-zh="退货处理">退货处理</li>
-      <li data-en="Relabeling Services" data-zh="换标服务">换标服务</li>
-    </ul>
-  </section>
-
-  <section id="about" class="about">
-    <h2 data-en="About Fullhouse Logistic" data-zh="关于我们">About Fullhouse Logistic</h2>
-    <p data-en="Located in Ontario, California, Fullhouse Logistic operates a 40,000 square foot warehouse and provides reliable local warehousing and fulfillment services for cross-border sellers and overseas brands."
-       data-zh="Fullhouse Logistic 位于美国加利福尼亚州安大略市，仓库面积达 40,000 平方英尺，致力于为中国跨境电商卖家与海外品牌商提供高效、可靠的本地仓储及履约服务。">
-      Fullhouse Logistic 位于美国加利福尼亚州安大略市，仓库面积达 40,000 平方英尺，致力于为中国跨境电商卖家与海外品牌商提供高效、可靠的本地仓储及履约服务。
+  <!-- 示例展示部分，内容可继续添加 -->
+  <section id="team">
+    <h2 data-en="Our Team" data-zh="团队介绍">Our Team</h2>
+    <p data-en="Our core operations team has over 10 years of experience in the U.S. warehousing and logistics industry." data-zh="核心运营成员拥有 10 年以上美国本地仓储物流行业经验。">
+      Our core operations team has over 10 years of experience in the U.S. warehousing and logistics industry.
     </p>
   </section>
 
-  <section id="team" class="team">
-    <h2 data-en="Our Team" data-zh="团队介绍">Our Team</h2>
-    <ul>
-      <li>核心运营成员拥有 10 年以上美国本地仓储物流行业经验；</li>
-      <li>从小型仓库起步，实战管理过百万平方英尺级别的大型海外仓；</li>
-      <li>擅长仓库规划、团队建设、流程优化等多环节运营管理。</li>
-    </ul>
-    <div class="team-gallery">
-      <img src="team1.jpg" alt="Team working photo">
-      <img src="team2.jpg" alt="Warehouse view">
-      <img src="team3.jpg" alt="Warehouse racking">
-      <img src="team4.jpg" alt="Warehouse exterior at night">
-    </div>
-  </section>
-
-  <section id="presentation" class="presentation">
+  <section id="presentation">
     <h2 data-en="Company Introduction" data-zh="公司介绍">Company Introduction</h2>
-    <p><strong>仓库位置：</strong> 美国加州安大略市，40,000 平方英尺</p>
-    <p><strong>主营业务：</strong> 本地仓储、一件代发、退货处理、换标</p>
-    <p><strong>服务对象：</strong> 中国跨境卖家、海外品牌商</p>
-    <p><strong>客户类型：</strong> 从初创卖家到上市公司，涵盖 B2B/B2C，本地卡车公司合作（如 Mothership）</p>
-    <p><strong>核心服务：</strong> 平台订单处理、FBA 送仓、VC 发货、退货翻新、批发转运等</p>
-    <p><strong>仓储能力：</strong> 重型货架+地堆区，中大件&小件区分，24小时监控与防护，灵活操作支持</p>
-    <p><strong>尾程物流：</strong> UPS、FedEx、USPS、Amazon Shipping 高效稳定渠道</p>
-    <p><strong>系统支持：</strong> 领星海外仓系统，OMS/WMS一体化，订单同步、财务管理、可对接ERP</p>
-    <p><strong>合作理念：</strong> 降低试错成本、提前风险预警、专业后勤顾问</p>
-  </section>
-
-  <section id="contact" class="contact">
-    <h2 data-en="Contact Us" data-zh="联系我们">Contact Us</h2>
-    <p>Email: <a href="mailto:edwards.zhong@fullhouselogistic.com">edwards.zhong@fullhouselogistic.com</a></p>
+    <p data-en="Warehouse Location: Ontario, California" data-zh="仓库位置：美国加州安大略市">
+      Warehouse Location: Ontario, California
+    </p>
   </section>
 
   <footer>
@@ -156,7 +84,7 @@
   <script>
     function setLanguage(lang) {
       document.querySelectorAll('[data-en]').forEach(el => {
-        el.textContent = el.getAttribute(`data-${lang}`);
+        el.textContent = el.getAttribute('data-' + lang);
       });
     }
   </script>
