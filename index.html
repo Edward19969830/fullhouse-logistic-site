@@ -9,47 +9,58 @@
     .header-content {
       display: flex;
       align-items: center;
-      max-width: 1000px;
+      justify-content: space-between;
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 24px;
     }
     .logo {
-      height: 64px;
-      margin-right: 24px;
-      flex-shrink: 0;
+      height: 90px;
+      max-width: 220px;
       background: none;
       border-radius: 12px;
       object-fit: contain;
       box-shadow: none;
+      display: block;
     }
     .logo-slogan {
-      margin-top: 4px;
+      margin-top: 12px;
       margin-left: 4px;
-      font-size: 1.13em;
+      font-size: 1.5em;
       color: #ffa726;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       font-weight: bold;
       font-family: Arial, sans-serif;
+      white-space: nowrap;
     }
-    .title-area {
-      flex-grow: 1;
-      display: flex;
-      align-items: center;
+    .title-area-center {
+      flex: 1;
+      text-align: center;
     }
     .site-title {
-      font-size: 1.7em;
+      font-size: 2em;
       font-weight: bold;
       letter-spacing: 1px;
+      margin: 0;
+      white-space: nowrap;
+    }
+    .lang-area {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-width: 150px;
+      gap: 8px;
     }
     .lang-btn {
-      margin-left: 12px;
       background: #fff;
       color: #333;
       border: none;
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 6px;
       cursor: pointer;
       font-size: 1em;
       transition: background 0.2s;
+      margin-left: 4px;
     }
     .lang-btn:hover { background: #f7c873; }
     .content { max-width: 900px; margin: 32px auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 12px #0002; padding: 40px; }
@@ -58,8 +69,6 @@
     .section { margin-bottom: 32px; }
     .advantage-list, .capability-list { margin-left: 1em; }
     .divider { border-top: 1px solid #eee; margin: 32px 0; }
-
-    /* 轮播图样式 */
     .carousel-container {
       position: relative;
       width: 680px;
@@ -128,13 +137,14 @@
       background: #ffa726;
       opacity: 1;
     }
-    @media (max-width: 700px) {
-      .header-content, .content { flex-direction: column; padding: 12px; }
-      .content { padding: 18px; }
-      .logo { height: 40px; margin-right: 10px; }
-      .logo-slogan { font-size: 1em; }
+    @media (max-width: 900px) {
+      .header-content { flex-direction: column; align-items: flex-start; padding: 8px;}
+      .title-area-center { text-align: left; width: 100%; }
       .site-title { font-size: 1.2em; }
+      .logo { height: 60px; }
+      .logo-slogan { font-size: 1em; }
       .carousel-container { width: 100%; height: 200px; }
+      .lang-area { justify-content: flex-start; }
     }
   </style>
   <script>
@@ -142,8 +152,7 @@
       document.querySelectorAll('.zh').forEach(e => e.style.display = (lang==='zh' ? '' : 'none'));
       document.querySelectorAll('.en').forEach(e => e.style.display = (lang==='en' ? '' : 'none'));
     }
-
-    // 自动播放轮播图JS，5秒切换
+    // 轮播图自动播放
     var carouselIndex = 0;
     var carouselTimer = null;
     function showCarousel(n, auto) {
@@ -159,7 +168,6 @@
           dot.classList.toggle('active', i === carouselIndex);
         });
       }
-      // 自动轮播：重置计时器
       if (!auto) {
         clearInterval(carouselTimer);
         carouselTimer = setInterval(function() { showCarousel(carouselIndex + 1, true); }, 5000);
@@ -169,7 +177,6 @@
     function carouselNext() { showCarousel(carouselIndex + 1); }
     document.addEventListener("DOMContentLoaded", function() {
       showCarousel(0);
-      // 支持点 indicator 跳转
       var dots = document.querySelectorAll('.carousel-dot');
       dots.forEach(function(dot, i) {
         dot.addEventListener('click', function() { showCarousel(i); });
@@ -181,12 +188,17 @@
 <body>
   <div class="header">
     <div class="header-content">
-      <div style="display: flex; flex-direction: column; align-items: flex-start;">
-        <img src="logo.png" alt="FullHouse Logistic Logo" class="logo">
+      <!-- 左侧 LOGO 和标语 -->
+      <div style="display: flex; flex-direction: column; align-items: flex-start; min-width: 220px;">
+        <img src="/mnt/data/logo.png" alt="FullHouse Logistic Logo" class="logo">
         <span class="logo-slogan">ON-TIME DELIVERY</span>
       </div>
-      <div class="title-area">
+      <!-- 中间 公司名 -->
+      <div class="title-area-center">
         <span class="site-title">FullHouse Logistic</span>
+      </div>
+      <!-- 右侧 语言切换按钮 -->
+      <div class="lang-area">
         <button class="lang-btn" onclick="switchLang('zh')">中文</button>
         <button class="lang-btn" onclick="switchLang('en')">English</button>
       </div>
@@ -367,14 +379,14 @@
       <h3 class="zh">仓库与团队风采</h3>
       <h3 class="en" style="display:none;">Warehouse & Team Gallery</h3>
       <div class="carousel-container">
-        <img class="carousel-img active" src="team1.jpg" alt="外观">
-        <img class="carousel-img" src="team2.jpg" alt="仓库内部1">
-        <img class="carousel-img" src="team3.jpg" alt="仓库内部2">
-        <img class="carousel-img" src="team4.jpg" alt="夜景">
-        <img class="carousel-img" src="team5.jpg" alt="打包作业">
-        <img class="carousel-img" src="team7.jpg" alt="团队马甲">
-        <img class="carousel-img" src="team8.jpg" alt="托盘1">
-        <img class="carousel-img" src="team9.jpg" alt="托盘2">
+        <img class="carousel-img active" src="/mnt/data/team1.jpg" alt="外观">
+        <img class="carousel-img" src="/mnt/data/team2.jpg" alt="仓库内部1">
+        <img class="carousel-img" src="/mnt/data/team3.jpg" alt="仓库内部2">
+        <img class="carousel-img" src="/mnt/data/team4.jpg" alt="夜景">
+        <img class="carousel-img" src="/mnt/data/team5.jpg" alt="打包作业">
+        <img class="carousel-img" src="/mnt/data/team7.jpg" alt="团队马甲">
+        <img class="carousel-img" src="/mnt/data/team8.jpg" alt="托盘1">
+        <img class="carousel-img" src="/mnt/data/team9.jpg" alt="托盘2">
         <button class="carousel-btn prev" onclick="carouselPrev()">&#8678;</button>
         <button class="carousel-btn next" onclick="carouselNext()">&#8680;</button>
         <div class="carousel-indicator">
@@ -409,6 +421,3 @@
   </div>
 </body>
 </html>
-
-
-
