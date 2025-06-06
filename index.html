@@ -5,14 +5,14 @@
   <title>FullHouse Logistic 海外仓</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #f8f9fa; }
-    .header, .footer { background: #333; color: #fff; padding: 24px; }
+    .header, .footer { background: #333; color: #fff; padding: 24px 0; }
     .header-content {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
+      width: 100%;
+      padding: 0 36px;
+      box-sizing: border-box;
     }
     .logo {
       height: 90px;
@@ -138,7 +138,7 @@
       opacity: 1;
     }
     @media (max-width: 900px) {
-      .header-content { flex-direction: column; align-items: flex-start; padding: 8px;}
+      .header-content { flex-direction: column; align-items: flex-start; padding: 0 8px;}
       .title-area-center { text-align: left; width: 100%; }
       .site-title { font-size: 1.2em; }
       .logo { height: 60px; }
@@ -189,7 +189,7 @@
   <div class="header">
     <div class="header-content">
       <!-- 左侧 LOGO 和标语 -->
-      <div style="display: flex; flex-direction: column; align-items: flex-start; min-width: 220px;">
+      <div style="display: flex; flex-direction: column; align-items: flex-start; min-width: 210px;">
         <img src="/mnt/data/logo.png" alt="FullHouse Logistic Logo" class="logo">
         <span class="logo-slogan">ON-TIME DELIVERY</span>
       </div>
