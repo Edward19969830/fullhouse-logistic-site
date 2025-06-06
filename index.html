@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>FullHouse Logistic 海外仓</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f8f9fa; }
+    .header, .footer { background: #333; color: #fff; padding: 24px; }
+    .header-content {
+      display: flex;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .logo {
+      height: 64px;
+      margin-right: 24px;
+      flex-shrink: 0;
+      background: none;
+      border-radius: 12px;
+      object-fit: contain;
+      box-shadow: none;
+    }
+    .logo-slogan {
+      margin-top: 4px;
+      margin-left: 4px;
+      font-size: 1.13em;
+      color: #ffa726;
+      letter-spacing: 1px;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+    }
+    .title-area {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+    }
+    .site-title {
+      font-size: 1.7em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .lang-btn {
+      margin-left: 12px;
+      background: #fff;
+      color: #333;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.2s;
+    }
+    .lang-btn:hover { background: #f7c873; }
+    .content { max-width: 900px; margin: 32px auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 12px #0002; padding: 40px; }
+    h2, h3 { margin-top: 1.2em; margin-bottom: 0.4em; }
+    ul { margin-top: 0; margin-bottom: 1.2em; }
+    .section { margin-bottom: 32px; }
+    .advantage-list, .capability-list { margin-left: 1em; }
+    .divider { border-top: 1px solid #eee; margin: 32px 0; }
+
+    /* 轮播图样式 */
+    .carousel-container {
+      position: relative;
+      width: 680px;
+      max-width: 100%;
+      height: 380px;
+      margin: 32px auto 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px #0002;
+      background: #e9e9e9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carousel-img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      opacity: 0;
+      transition: opacity 0.6s;
+      z-index: 0;
+    }
+    .carousel-img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.3);
+      color: #fff;
+      border: none;
+      font-size: 2em;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+      opacity: 0.8;
+      transition: background 0.2s;
+    }
+    .carousel-btn:hover { background: #ffa726; }
+    .carousel-btn.prev { left: 16px; }
+    .carousel-btn.next { right: 16px; }
+    .carousel-indicator {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 3;
+    }
+    .carousel-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #ffa726;
+      opacity: 0.6;
+      cursor: pointer;
+      transition: background 0.3s, opacity 0.3s;
+    }
+    .carousel-dot.active {
+      background: #ffa726;
+      opacity: 1;
+    }
+    @media (max-width: 700px) {
+      .header-content, .content { flex-direction: column; padding: 12px; }
+      .content { padding: 18px; }
+      .logo { height: 40px; margin-right: 10px; }
+      .logo-slogan { font-size: 1em; }
+      .site-title { font-size: 1.2em; }
+      .carousel-container { width: 100%; height: 200px; }
+    }
+  </style>
+  <script>
+    function switchLang(lang) {
+      document.querySelectorAll('.zh').forEach(e => e.style.display = (lang==='zh' ? '' : 'none'));
+      document.querySelectorAll('.en').forEach(e => e.style.display = (lang==='en' ? '' : 'none'));
+    }
+
+    // 自动播放轮播图JS，5秒切换
+    var carouselIndex = 0;
+    var carouselTimer = null;
+    function showCarousel(n, auto) {
+      var imgs = document.querySelectorAll('.carousel-img');
+      var dots = document.querySelectorAll('.carousel-dot');
+      if (!imgs.length) return;
+      carouselIndex = (n + imgs.length) % imgs.length;
+      imgs.forEach(function(img, i) {
+        img.classList.toggle('active', i === carouselIndex);
+      });
+      if (dots.length) {
+        dots.forEach(function(dot, i) {
+          dot.classList.toggle('active', i === carouselIndex);
+        });
+      }
+      // 自动轮播：重置计时器
+      if (!auto) {
+        clearInterval(carouselTimer);
+        carouselTimer = setInterval(function() { showCarousel(carouselIndex + 1, true); }, 5000);
+      }
+    }
+    function carouselPrev() { showCarousel(carouselIndex - 1); }
+    function carouselNext() { showCarousel(carouselIndex + 1); }
+    document.addEventListener("DOMContentLoaded", function() {
+      showCarousel(0);
+      // 支持点 indicator 跳转
+      var dots = document.querySelectorAll('.carousel-dot');
+      dots.forEach(function(dot, i) {
+        dot.addEventListener('click', function() { showCarousel(i); });
+      });
+      carouselTimer = setInterval(function() { showCarousel(carouselIndex + 1, true); }, 5000);
+    });
+  </script>
+</head>
+<body>
+  <div class="header">
+    <div class="header-content">
+      <div style="display: flex; flex-direction: column; align-items: flex-start;">
+        <img src="/mnt/data/logo.png" alt="FullHouse Logistic Logo" class="logo">
+        <span class="logo-slogan">ON-TIME DELIVERY</span>
+      </div>
+      <div class="title-area">
+        <span class="site-title">FullHouse Logistic</span>
+        <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+        <button class="lang-btn" onclick="switchLang('en')">English</button>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <!-- 公司简介 / About Us -->
+    <div class="section">
+      <h2 class="zh">公司简介</h2>
+      <h2 class="en" style="display:none;">About Us</h2>
+      <p class="zh">FullHouse Logistic是一家位于美国加利福尼亚州安大略市的专业海外仓，仓库面积40,000平方英尺。我们专注为中国跨境电商卖家及海外品牌商提供本地仓储、一件代发、退货处理、换标等全方位服务，助力客户高效拓展美国市场。</p>
+      <p class="en" style="display:none;">FullHouse Logistic is a professional fulfillment warehouse located in Ontario, California, with a warehouse area of 40,000 square feet. We provide comprehensive services including local warehousing, order fulfillment, returns processing, and relabeling for Chinese cross-border e-commerce sellers and overseas brands, helping clients efficiently expand in the US market.</p>
+    </div>
+
+    <!-- 公司宣传视频 / Company Intro Video -->
+    <div class="section">
+      <h3 class="zh">公司宣传视频</h3>
+      <h3 class="en" style="display:none;">Company Intro Video</h3>
+      <iframe 
+        width="680" height="380"
+        src="https://www.youtube.com/embed/ttG3LCsfo4M"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        style="margin:24px 0 24px 0; border-radius:12px; max-width:100%;">
+      </iframe>
+    </div>
+
+    <!-- 业务亮点 / Business Highlights -->
+    <div class="section">
+      <h3 class="zh">业务亮点</h3>
+      <h3 class="en" style="display:none;">Business Highlights</h3>
+      <ul class="zh advantage-list">
+        <li>B2C平台订单一件代发</li>
+        <li>B2B批发订单中转、退换货处理</li>
+        <li>FBA送仓 / Amazon VC发货</li>
+        <li>Amazon SFP日发日清</li>
+        <li>退货检测、翻新再销售等售后服务</li>
+      </ul>
+      <ul class="en advantage-list" style="display:none;">
+        <li>B2C platform order fulfillment (dropshipping)</li>
+        <li>B2B wholesale order transfer and returns processing</li>
+        <li>FBA warehouse delivery / Amazon VC shipping</li>
+        <li>Amazon SFP same-day order fulfillment</li>
+        <li>Return inspection, refurbishment, and after-sales services</li>
+      </ul>
+    </div>
+
+    <!-- 运力保障 / Capacity Assurance -->
+    <div class="section">
+      <h3 class="zh">运力保障</h3>
+      <h3 class="en" style="display:none;">Capacity Assurance</h3>
+      <ul class="zh">
+        <li>旺季不爆仓，优先揽收，操作团队可配合高峰期出货需求；</li>
+        <li>标签系统自动比价匹配最优渠道，支持批量打单。</li>
+      </ul>
+      <ul class="en" style="display:none;">
+        <li>No warehouse overload during peak season, priority pick-up, and operational team support for peak shipping needs;</li>
+        <li>Automated label system compares and matches the best shipping channels, supporting batch order printing.</li>
+      </ul>
+    </div>
+
+    <!-- 合规承诺 / Compliance Commitment -->
+    <div class="section">
+      <h3 class="zh">合规承诺</h3>
+      <h3 class="en" style="display:none;">Compliance Commitment</h3>
+      <ul class="zh">
+        <li>杜绝科技单、延迟单等风险渠道，所有标签来源真实合规；</li>
+        <li>从源头保障客户账号安全与物流稳定，适合长期稳定合作。</li>
+      </ul>
+      <ul class="en" style="display:none;">
+        <li>No risky channels such as manipulated or delayed orders; all shipping labels come from authentic and compliant sources;</li>
+        <li>Ensure account safety and logistics stability from the source, ideal for long-term stable cooperation.</li>
+      </ul>
+    </div>
+
+    <!-- 主营业务 / Main Services -->
+    <div class="section">
+      <h3 class="zh">主营业务</h3>
+      <h3 class="en" style="display:none;">Main Services</h3>
+      <ul class="zh">
+        <li>美国本地仓储</li>
+        <li>一件代发</li>
+        <li>退货处理</li>
+        <li>换标服务</li>
+      </ul>
+      <ul class="en" style="display:none;">
+        <li>US Local Warehousing</li>
+        <li>Order Fulfillment</li>
+        <li>Returns Processing</li>
+        <li>Relabeling Services</li>
+      </ul>
+    </div>
+
+    <!-- 服务对象 / Target Clients -->
+    <div class="section">
+      <h3 class="zh">服务对象</h3>
+      <h3 class="en" style="display:none;">Target Clients</h3>
+      <ul class="zh">
+        <li>跨境电商卖家</li>
+        <li>海外品牌商</li>
+        <li>美国本地销售</li>
+        <li>卡车公司转运</li>
+      </ul>
+      <ul class="en" style="display:none;">
+        <li>Cross-border e-commerce sellers</li>
+        <li>Overseas brands</li>
+        <li>US local retailers/sellers</li>
+        <li>Trucking companies/Transloading companies</li>
+      </ul>
+    </div>
+
+    <!-- 仓储业务能力 / Storage Capabilities -->
+    <div class="section">
+      <h3 class="zh">仓储业务能力</h3>
+      <h3 class="en" style="display:none;">Storage Capabilities</h3>
+      <h4 class="zh">中大件商品</h4>
+      <h4 class="en" style="display:none;">Large & Bulky Items</h4>
+      <ul class="zh capability-list">
+        <li>全仓配备重型高位货架，地堆与货架合理结合；</li>
+        <li>高库容使用率，专为大件物品优化堆放动线；</li>
+        <li>配套设备齐全（叉车、加长托盘、缠绕膜、绑带等）；</li>
+        <li>可提供家具、健身器材、宠物用品等大件加固、贴标与打托服务。</li>
+      </ul>
+      <ul class="en capability-list" style="display:none;">
+        <li>Heavy-duty high racks across the warehouse, combined with ground stacking for optimal space utilization;</li>
+        <li>High storage efficiency, optimized layout for bulky items;</li>
+        <li>Complete equipment (forklifts, extra-long pallets, stretch wrap, straps, etc.);</li>
+        <li>Reinforcement, labeling, and palletizing services for furniture, fitness equipment, pet supplies, and other large items.</li>
+      </ul>
+      <h4 class="zh">中小件商品</h4>
+      <h4 class="en" style="display:none;">Small & Medium Items</h4>
+      <ul class="zh capability-list">
+        <li>SKU分区精细管理，提升拣货效率；</li>
+        <li>可匹配电商平台订单逻辑，支持批量发货；</li>
+        <li>高货值中小件设置独立存储/操作区，与普通区域隔离；</li>
+        <li>区域配备24小时监控、权限门禁与上锁存储，安全性高；</li>
+        <li>支持退货复检、换标、组合打包等柔性操作服务。</li>
+      </ul>
+      <ul class="en capability-list" style="display:none;">
+        <li>Fine SKU zoning for efficient picking;</li>
+        <li>Compatible with e-commerce order logic, supports bulk shipping;</li>
+        <li>Independent storage/operation areas for high-value items, separated from regular zones;</li>
+        <li>Areas equipped with 24/7 surveillance, access control, and locked storage for high security;</li>
+        <li>Supports flexible services like return inspection, relabeling, and bundled packing.</li>
+      </ul>
+    </div>
+
+    <!-- 团队介绍 / Team Introduction -->
+    <div class="section">
+      <h3 class="zh">团队介绍</h3>
+      <h3 class="en" style="display:none;">Team Introduction</h3>
+      <p class="zh">FullHouse Logistic核心运营团队拥有10年以上美国本地仓储物流行业经验。从小型仓库起步，实战管理过百万平方英尺级别的大型海外仓，擅长仓库规划、团队建设、流程优化等多环节运营管理，为客户提供高效、可靠的仓储及供应链解决方案。</p>
+      <p class="en" style="display:none;">The core operation team of FullHouse Logistic has over 10 years of experience in the US warehousing and logistics industry. Starting from small-scale warehouses, the team has managed large-scale overseas warehouses of over one million square feet. We specialize in warehouse planning, team building, process optimization, and multi-link operation management, providing clients with efficient and reliable warehousing and supply chain solutions.</p>
+    </div>
+
+    <!-- Why Choose Us / 为什么选择我们 -->
+    <div class="section">
+      <h3 class="zh">为什么选择我们</h3>
+      <h3 class="en" style="display:none;">Why Choose Us</h3>
+      <ul class="zh">
+        <li>我们不仅是执行仓储服务的供应商，更是客户在美国市场的专业后勤伙伴。</li>
+        <li>擅长提前预警客户潜在风险，并给出可落地的操作建议；</li>
+        <li>帮助客户避免因流程不熟或系统不了解而付出额外成本；</li>
+        <li>对于精于销售但对仓储物流知识有限的客户，我们可以成为他们的“后勤顾问”，让客户把更多精力放在销售与增长上。</li>
+      </ul>
+      <ul class="en" style="display:none;">
+        <li>We are not just a service provider, but your professional logistics partner in the US market.</li>
+        <li>Proactively alert clients to potential risks and offer practical operational advice;</li>
+        <li>Help clients avoid unnecessary costs due to unfamiliarity with processes or systems;</li>
+        <li>For clients focused on sales but less familiar with warehousing and logistics, we can serve as your “logistics consultant,” allowing you to focus on growth and sales.</li>
+      </ul>
+    </div>
+
+    <!-- 自动播放轮播图 Gallery Section -->
+    <div class="section">
+      <h3 class="zh">仓库与团队风采</h3>
+      <h3 class="en" style="display:none;">Warehouse & Team Gallery</h3>
+      <div class="carousel-container">
+        <img class="carousel-img active" src="/mnt/data/team1.jpg" alt="外观">
+        <img class="carousel-img" src="/mnt/data/team2.jpg" alt="仓库内部1">
+        <img class="carousel-img" src="/mnt/data/team3.jpg" alt="仓库内部2">
+        <img class="carousel-img" src="/mnt/data/team4.jpg" alt="夜景">
+        <img class="carousel-img" src="/mnt/data/team5.jpg" alt="打包作业">
+        <img class="carousel-img" src="/mnt/data/team7.jpg" alt="团队马甲">
+        <img class="carousel-img" src="/mnt/data/team8.jpg" alt="托盘1">
+        <img class="carousel-img" src="/mnt/data/team9.jpg" alt="托盘2">
+        <button class="carousel-btn prev" onclick="carouselPrev()">&#8678;</button>
+        <button class="carousel-btn next" onclick="carouselNext()">&#8680;</button>
+        <div class="carousel-indicator">
+          <span class="carousel-dot active"></span>
+          <span class="carousel-dot"></span>
+          <span class="carousel-dot"></span>
+          <span class="carousel-dot"></span>
+          <span class="carousel-dot"></span>
+          <span class="carousel-dot"></span>
+          <span class="carousel-dot"></span>
+          <span class="carousel-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <!-- 联系方式 / Contact Us -->
+    <div class="section">
+      <h3 class="zh">联系方式</h3>
+      <h3 class="en" style="display:none;">Contact Us</h3>
+      <ul>
+        <li>Email: info@fullhouse.com</li>
+        <li>微信: fullhouse_logistic</li>
+        <li class="zh">地址: 美国加利福尼亚州安大略市</li>
+        <li class="en" style="display:none;">Address: Ontario, California, USA</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer">
+    <span class="zh">© 2025 FullHouse Logistic 保留所有权利。</span>
+    <span class="en" style="display:none;">© 2025 FullHouse Logistic. All Rights Reserved.</span>
+  </div>
+</body>
+</html>
+
+
+
