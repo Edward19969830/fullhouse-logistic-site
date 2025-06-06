@@ -35,11 +35,20 @@
     }
     .title-area-center {
       flex: 1;
-      text-align: center;
+      display: flex;
+      align-items: center;         /* 垂直居中 */
+      justify-content: center;     /* 水平居中 */
+      background: #fff;
+      border-radius: 12px;
+      padding: 0 32px;
+      margin: 0 32px;
+      height: 90px;                /* 拉平高度 */
+      box-shadow: 0 2px 8px #0001;
     }
     .site-title {
+      color: #111;
       font-size: 2em;
-      font-weight: bold;
+      font-weight: bold;           /* 加粗 */
       letter-spacing: 1px;
       margin: 0;
       white-space: nowrap;
@@ -139,7 +148,13 @@
     }
     @media (max-width: 900px) {
       .header-content { flex-direction: column; align-items: flex-start; padding: 0 8px;}
-      .title-area-center { text-align: left; width: 100%; }
+      .title-area-center { 
+        text-align: left; 
+        width: 100%; 
+        margin: 0 0 16px 0;
+        height: 48px;
+        padding: 0 10px;
+      }
       .site-title { font-size: 1.2em; }
       .logo { height: 60px; max-width: 180px;}
       .logo-slogan { font-size: 1em; }
@@ -215,8 +230,8 @@
 
     <!-- 公司宣传视频 / Company Intro Video -->
     <div class="section">
-      <h3 class="zh">公司宣传视频</h3>
-      <h3 class="en" style="display:none;">Company Intro Video</h3>
+      <h3 class="zh">公司视频</h3>
+      <h3 class="en" style="display:none;">Company Video</h3>
       <iframe 
         width="680" height="380"
         src="https://www.youtube.com/embed/ttG3LCsfo4M"
@@ -408,8 +423,7 @@
       <h3 class="zh">联系方式</h3>
       <h3 class="en" style="display:none;">Contact Us</h3>
       <ul>
-        <li>Email: info@fullhouse.com</li>
-        <li>微信: fullhouse_logistic</li>
+        <li>Email: yuan@fullhouselogistic.com </li>
         <li class="zh">地址: 美国加利福尼亚州安大略市</li>
         <li class="en" style="display:none;">Address: Ontario, California, USA</li>
       </ul>
