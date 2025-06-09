@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>FullHouse Logistic 海外仓</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; margin: 0; background: #f8f9fa; }
+    body { font-family: Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; margin: 0; background: #f8f9fa; }
     .header { background: #222; color: #fff; padding: 0; }
     .header-content {
       display: flex;
@@ -14,41 +13,40 @@
       width: 100%;
       padding: 0 32px;
       box-sizing: border-box;
-      min-height: 160px;
+      min-height: 110px;
     }
     .logo-box {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
-      min-width: 340px;
-      max-width: 480px;
-      height: 160px;
+      min-width: 140px;
+      max-width: 180px;
+      height: 68px;
       background: #fff;
-      border-radius: 18px;
+      border-radius: 16px;
       margin: 16px 0 16px 0;
-      padding: 20px 36px 16px 36px;
+      padding: 7px 10px 7px 12px;
       box-shadow: 0 2px 8px #0002;
     }
     .logo {
-      height: 100px;
-      max-width: 430px;
+      height: 34px;       /* 原本大约100px，缩小三分之一 */
+      max-width: 140px;
       background: none;
-      border-radius: 8px;
+      border-radius: 5px;
       object-fit: contain;
-      margin-bottom: 14px;
+      margin-bottom: 3px;
       display: block;
     }
     .logo-slogan {
-      font-size: 2em;
-      color: #ffa726;
-      letter-spacing: 4px;
-      font-weight: 900;
-      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      font-size: 1.12em;
+      color: #ff9800;
+      letter-spacing: 3px;
+      font-weight: bold;
+      font-family: 'Segoe UI', Arial, sans-serif;
       white-space: nowrap;
-      text-shadow: 0 2px 8px #fff7, 0 1px 2px #0002;
-      line-height: 1.2;
-      margin-left: 4px;
+      margin-left: 1px;
+      text-shadow: 0 2px 6px #fff8, 0 1px 0 #ffebc6;
     }
     .title-area-center {
       flex: 1;
@@ -58,14 +56,14 @@
       min-width: 0;
     }
     .site-title {
-      font-family: 'Montserrat', 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
-      font-size: 2.7em;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      font-size: 2.2em;
       font-weight: 800;
       letter-spacing: 2px;
       color: #222;
       background: #fff;
-      border-radius: 16px;
-      padding: 18px 48px;
+      border-radius: 14px;
+      padding: 14px 32px;
       box-shadow: 0 2px 8px #0001;
       display: inline-block;
       margin: 0;
@@ -75,23 +73,23 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      min-width: 150px;
+      min-width: 140px;
       gap: 8px;
     }
     .lang-btn {
       background: #fff;
       color: #333;
       border: none;
-      padding: 10px 20px;
+      padding: 8px 18px;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 1.1em;
+      font-size: 1em;
       transition: background 0.2s;
       margin-left: 4px;
       font-weight: 600;
       box-shadow: 0 2px 8px #0001;
     }
-    .lang-btn:hover { background: #f7c873; }
+    .lang-btn:hover { background: #ffe0b2; }
     .content { max-width: 900px; margin: 32px auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 12px #0002; padding: 40px; }
     h2, h3 { margin-top: 1.2em; margin-bottom: 0.4em; }
     ul { margin-top: 0; margin-bottom: 1.2em; }
@@ -101,7 +99,7 @@
       position: relative;
       width: 680px;
       max-width: 100%;
-      height: 380px;
+      height: 340px;
       margin: 32px auto 0 auto;
       border-radius: 16px;
       overflow: hidden;
@@ -168,34 +166,33 @@
     /* 联系方式LOGO样式 */
     .contact-logo-box {
       position: absolute;
-      right: 36px;
-      bottom: 16px;
+      right: 32px;
+      bottom: 8px;
       display: flex;
       align-items: flex-end;
       justify-content: flex-end;
     }
     .contact-logo {
-      width: 120px;
+      width: 88px;
       height: auto;
-      border-radius: 12px;
+      border-radius: 10px;
       box-shadow: 0 2px 8px #0001;
       background: #fff;
       object-fit: contain;
     }
     .contact-section {
       position: relative;
-      min-height: 110px;
+      min-height: 90px;
     }
     @media (max-width: 900px) {
       .header-content { flex-direction: column; align-items: flex-start; padding: 0 8px;}
       .title-area-center { text-align: left; width: 100%; justify-content: flex-start; }
-      .site-title { font-size: 1.3em; padding: 10px 12px; }
-      .logo-box { padding: 8px 10px; min-width: 180px; max-width: 99vw; height: auto;}
-      .logo { height: 50px; }
-      .logo-slogan { font-size: 1.2em;}
-      .carousel-container { width: 100%; height: 200px; }
-      .contact-logo { width: 80px; }
-      .contact-logo-box { position: static; margin-top: 20px; }
+      .site-title { font-size: 1.1em; padding: 10px 12px; }
+      .logo { height: 24px; }
+      .logo-box { padding: 5px 7px; }
+      .carousel-container { width: 100%; height: 160px; }
+      .contact-logo { width: 58px; }
+      .contact-logo-box { position: static; margin-top: 16px; }
     }
   </style>
   <script>
@@ -248,7 +245,7 @@
     <div class="header-content">
       <!-- 左侧 LOGO 和标语 -->
       <div class="logo-box">
-        <img src="WYdzRn2o1Khmk6FZ9FV1LM.png" alt="FullHouse Logistic Logo" class="logo">
+        <img src="logo.png" alt="FullHouse Logistic Logo" class="logo">
         <span class="logo-slogan">ON-TIME DELIVERY</span>
       </div>
       <!-- 中间 公司名 -->
@@ -282,20 +279,21 @@
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
-        style="margin:24px 0 24px 0; border-radius:12px; max-width:100%;"></iframe>
+        style="margin:24px 0 24px 0; border-radius:12px; max-width:100%;">
+      </iframe>
     </div>
     <!-- 业务亮点 / Business Highlights -->
     <div class="section">
       <h3 class="zh">业务亮点</h3>
       <h3 class="en" style="display:none;">Business Highlights</h3>
-      <ul class="zh advantage-list">
+      <ul class="zh">
         <li>B2C平台订单一件代发</li>
         <li>B2B批发订单中转、退换货处理</li>
         <li>FBA送仓 / Amazon VC发货</li>
         <li>Amazon SFP日发日清</li>
         <li>退货检测、翻新再销售等售后服务</li>
       </ul>
-      <ul class="en advantage-list" style="display:none;">
+      <ul class="en" style="display:none;">
         <li>B2C platform order fulfillment (dropshipping)</li>
         <li>B2B wholesale order transfer and returns processing</li>
         <li>FBA warehouse delivery / Amazon VC shipping</li>
@@ -371,13 +369,13 @@
       <h3 class="en" style="display:none;">Storage Capabilities</h3>
       <h4 class="zh">中大件商品</h4>
       <h4 class="en" style="display:none;">Large & Bulky Items</h4>
-      <ul class="zh capability-list">
+      <ul class="zh">
         <li>全仓配备重型高位货架，地堆与货架合理结合；</li>
         <li>高库容使用率，专为大件物品优化堆放动线；</li>
         <li>配套设备齐全（叉车、加长托盘、缠绕膜、绑带等）；</li>
         <li>可提供家具、健身器材、宠物用品等大件加固、贴标与打托服务。</li>
       </ul>
-      <ul class="en capability-list" style="display:none;">
+      <ul class="en" style="display:none;">
         <li>Heavy-duty high racks across the warehouse, combined with ground stacking for optimal space utilization;</li>
         <li>High storage efficiency, optimized layout for bulky items;</li>
         <li>Complete equipment (forklifts, extra-long pallets, stretch wrap, straps, etc.);</li>
@@ -385,14 +383,14 @@
       </ul>
       <h4 class="zh">中小件商品</h4>
       <h4 class="en" style="display:none;">Small & Medium Items</h4>
-      <ul class="zh capability-list">
+      <ul class="zh">
         <li>SKU分区精细管理，提升拣货效率；</li>
         <li>可匹配电商平台订单逻辑，支持批量发货；</li>
         <li>高货值中小件设置独立存储/操作区，与普通区域隔离；</li>
         <li>区域配备24小时监控、权限门禁与上锁存储，安全性高；</li>
         <li>支持退货复检、换标、组合打包等柔性操作服务。</li>
       </ul>
-      <ul class="en capability-list" style="display:none;">
+      <ul class="en" style="display:none;">
         <li>Fine SKU zoning for efficient picking;</li>
         <li>Compatible with e-commerce order logic, supports bulk shipping;</li>
         <li>Independent storage/operation areas for high-value items, separated from regular zones;</li>
@@ -464,13 +462,14 @@
         <li class="zh">电话: 1 (909)-676-3616</li>
       </ul>
       <div class="contact-logo-box">
-        <img src="WYdzRn2o1Khmk6FZ9FV1LM.png" alt="FullHouse Logo" class="contact-logo">
+        <img src="contact-logo.png" alt="FullHouse Logo" class="contact-logo">
       </div>
     </div>
   </div>
-  <div class="footer">
+  <div class="footer" style="padding: 20px 0 8px 14px; color:#222;">
     <span class="zh">© 2025 FullHouse Logistic 保留所有权利。</span>
     <span class="en" style="display:none;">© 2025 FullHouse Logistic. All Rights Reserved.</span>
   </div>
 </body>
 </html>
+
