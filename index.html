@@ -33,24 +33,24 @@
       font-family: Arial, sans-serif;
       white-space: nowrap;
     }
-    .title-area-center {
-      flex: 1;
+    .site-title-bg {
+      background: #fff;
+      padding: 16px 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #0001;
+      text-align: center;
+      margin: 0 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #fff;
-      border-radius: 12px;
-      padding: 0 32px;
-      margin: 0 32px;
-      height: 90px;
-      box-shadow: 0 2px 8px #0001;
+      flex: 1;
     }
     .site-title {
-      color: #111;
-      font-size: 2em;
+      font-size: 2.4em;
       font-weight: bold;
       letter-spacing: 1px;
       margin: 0;
+      color: #222;
       white-space: nowrap;
     }
     .lang-area {
@@ -146,29 +146,47 @@
       background: #ffa726;
       opacity: 1;
     }
+    .contact-flex {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .contact-flex ul { margin-bottom: 0; }
+    .contact-logo {
+      height: 70px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px #0002;
+      margin-left: 32px;
+      background: #fff;
+      padding: 6px 12px;
+    }
     @media (max-width: 900px) {
       .header-content { flex-direction: column; align-items: flex-start; padding: 0 8px;}
-      .title-area-center { 
-        text-align: left; 
-        width: 100%; 
-        margin: 0 0 16px 0;
-        height: 48px;
-        padding: 0 10px;
-      }
-      .site-title { font-size: 1.2em; }
-      .logo { height: 60px; max-width: 180px;}
+      .site-title-bg { padding: 10px 8px; }
+      .site-title { font-size: 1.3em; }
+      .logo { height: 120px; }
       .logo-slogan { font-size: 1em; }
       .carousel-container { width: 100%; height: 200px; }
       .lang-area { justify-content: flex-start; }
+      .contact-flex { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .contact-logo { margin: 12px 0 0 0; }
     }
   </style>
   <script>
     function switchLang(lang) {
       document.querySelectorAll('.zh').forEach(e => e.style.display = (lang==='zh' ? '' : 'none'));
       document.querySelectorAll('.en').forEach(e => e.style.display = (lang==='en' ? '' : 'none'));
-      // 视频同步切换
-      document.querySelectorAll('.zh-video').forEach(e => e.style.display = (lang==='zh' ? '' : 'none'));
-      document.querySelectorAll('.en-video').forEach(e => e.style.display = (lang==='en' ? '' : 'none'));
+      // 视频多语言切换
+      var zhVid = document.getElementById("video-zh");
+      var enVid = document.getElementById("video-en");
+      if (lang === 'zh') {
+        zhVid.style.display = "";
+        enVid.style.display = "none";
+      } else {
+        zhVid.style.display = "none";
+        enVid.style.display = "";
+      }
     }
     // 轮播图自动播放
     var carouselIndex = 0;
@@ -200,6 +218,8 @@
         dot.addEventListener('click', function() { showCarousel(i); });
       });
       carouselTimer = setInterval(function() { showCarousel(carouselIndex + 1, true); }, 5000);
+      // 初始多语言视频
+      switchLang('zh');
     });
   </script>
 </head>
@@ -211,8 +231,8 @@
         <img src="logo.png" alt="FullHouse Logistic Logo" class="logo">
         <span class="logo-slogan">ON-TIME DELIVERY</span>
       </div>
-      <!-- 中间 公司名 -->
-      <div class="title-area-center">
+      <!-- 中间 公司名（白底、加粗、黑字、居中） -->
+      <div class="site-title-bg">
         <span class="site-title">FullHouse Logistic</span>
       </div>
       <!-- 右侧 语言切换按钮 -->
@@ -227,36 +247,36 @@
     <div class="section">
       <h2 class="zh">公司简介</h2>
       <h2 class="en" style="display:none;">About Us</h2>
-      <p class="zh">FullHouse Logistic是一家位于美国加利福尼亚州安大略市的专业海外仓，仓库面积40,000平方英尺。我们专注为跨境电商卖家、海外品牌商、美国本地销售和卡车公司转运提供本地仓储、一件代发、退货处理、换标等全方位服务，助力客户高效拓展美国市场。</p>
-      <p class="en" style="display:none;">FullHouse Logistic is a professional fulfillment warehouse located in Ontario, California, with a warehouse area of 40,000 square feet. We provide comprehensive services including local warehousing, order fulfillment, returns processing, and relabeling for cross-border e-commerce sellers, overseas brands, US local sellers, and trucking/transloading companies, helping clients efficiently expand in the US market.</p>
+      <p class="zh">FullHouse Logistic是一家位于美国加利福尼亚州安大略市的专业海外仓，仓库面积40,000平方英尺。我们专注为中国跨境电商卖家及海外品牌商提供本地仓储、一件代发、退货处理、换标等全方位服务，助力客户高效拓展美国市场。</p>
+      <p class="en" style="display:none;">FullHouse Logistic is a professional fulfillment warehouse located in Ontario, California, with a warehouse area of 40,000 square feet. We provide comprehensive services including local warehousing, order fulfillment, returns processing, and relabeling for Chinese cross-border e-commerce sellers and overseas brands, helping clients efficiently expand in the US market.</p>
     </div>
 
-    <!-- 公司宣传视频 / Company Intro Video -->
+    <!-- 公司宣传视频 / Company Intro Video (中英文切换) -->
     <div class="section">
       <h3 class="zh">公司宣传视频</h3>
       <h3 class="en" style="display:none;">Company Intro Video</h3>
-      <!-- 中文视频 -->
-      <iframe
-        class="zh-video"
-        width="680" height="380"
-        src="https://www.youtube.com/embed/ttG3LCsfo4M"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        style="margin:24px 0 24px 0; border-radius:12px; max-width:100%;">
-      </iframe>
-      <!-- 英文视频 -->
-      <iframe
-        class="en-video"
-        width="680" height="380"
-        src="https://www.youtube.com/embed/tFLd9f15IjY"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        style="margin:24px 0 24px 0; border-radius:12px; max-width:100%; display:none;">
-      </iframe>
+      <div style="position:relative;">
+        <iframe 
+          id="video-zh"
+          width="680" height="380"
+          src="https://www.youtube.com/embed/ttG3LCsfo4M"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="margin:24px 0 24px 0; border-radius:12px; max-width:100%;">
+        </iframe>
+        <iframe 
+          id="video-en"
+          width="680" height="380"
+          src="https://www.youtube.com/embed/tFLd9f15IjY"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="margin:24px 0 24px 0; border-radius:12px; max-width:100%; display:none;">
+        </iframe>
+      </div>
     </div>
 
     <!-- 业务亮点 / Business Highlights -->
@@ -435,15 +455,21 @@
 
     <div class="divider"></div>
     <!-- 联系方式 / Contact Us -->
-    <div class="section">
-      <h3 class="zh">联系方式</h3>
-      <h3 class="en" style="display:none;">Contact Us</h3>
-      <ul>
-        <li>Email: info@fullhouse.com</li>
-        <li>微信: fullhouse_logistic</li>
-        <li class="zh">地址: 美国加利福尼亚州安大略市</li>
-        <li class="en" style="display:none;">Address: Ontario, California, USA</li>
-      </ul>
+    <div class="section contact-flex">
+      <div>
+        <h3 class="zh">联系方式</h3>
+        <h3 class="en" style="display:none;">Contact Us</h3>
+        <ul style="margin-top: 0;">
+          <li>Email：yuan@fullhouselogistic.com</li>
+          <li class="en" style="display:none;">Email: yuan@fullhouselogistic.com</li>
+          <li>电话：1 (909)-676-3616</li>
+          <li class="en" style="display:none;">Tel: 1 (909)-676-3616</li>
+          <li>微信: fullhouse_logistic</li>
+          <li class="zh">地址: 美国加利福尼亚州安大略市</li>
+          <li class="en" style="display:none;">Address: Ontario, California, USA</li>
+        </ul>
+      </div>
+      <img src="newlogo.png" alt="FullHouse Logo" class="contact-logo">
     </div>
   </div>
   <div class="footer">
