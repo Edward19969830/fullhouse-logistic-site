@@ -11,77 +11,82 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      min-height: 120px;
+      padding: 0 32px 0 32px;
       box-sizing: border-box;
-      padding: 0 36px;
+      min-height: 160px;
     }
     .logo-box {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
-      min-width: 220px;
-      background: transparent;
-      padding: 8px 0;
+      min-width: 260px;
+      max-width: 360px;
+      height: 120px;
+      background: #fff;
+      border-radius: 18px;
+      margin: 16px 0 16px 0;
+      padding: 14px 18px 10px 18px;
+      box-shadow: 0 2px 8px #0002;
     }
     .logo {
-      height: 120px;
-      max-width: 300px;
+      height: 72px;
+      max-width: 320px;
+      background: none;
+      border-radius: 8px;
       object-fit: contain;
-      margin-bottom: 0;
-      background: #fff;
-      border-radius: 10px;
-      padding: 8px 10px;
-      box-shadow: 0 2px 10px #0002;
+      margin-bottom: 6px;
+      display: block;
     }
     .logo-slogan {
-      font-size: 1.15em;
+      font-size: 1.2em;
       color: #ffa726;
       letter-spacing: 2px;
       font-weight: bold;
-      margin-top: 2px;
-      margin-left: 3px;
+      font-family: Arial, sans-serif;
+      white-space: nowrap;
+      margin-left: 2px;
     }
-    .site-title-box {
+    .title-area-center {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #fff;
-      border-radius: 12px;
-      margin: 0 30px;
-      padding: 12px 0;
-      box-shadow: 0 2px 10px #0002;
-      min-width: 340px;
-      max-width: 580px;
-      height: 54px;
+      min-width: 0;
     }
     .site-title {
-      color: #111;
-      font-weight: 800;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
       font-size: 2.2em;
-      letter-spacing: 1.5px;
-      white-space: nowrap;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #222;
+      background: #fff;
+      border-radius: 16px;
+      padding: 16px 32px;
+      box-shadow: 0 2px 8px #0001;
+      display: inline-block;
+      margin: 0;
       text-align: center;
     }
     .lang-area {
       display: flex;
       align-items: center;
-      gap: 8px;
-      min-width: 120px;
       justify-content: flex-end;
+      min-width: 150px;
+      gap: 8px;
     }
     .lang-btn {
       background: #fff;
       color: #333;
       border: none;
-      padding: 6px 14px;
-      border-radius: 6px;
+      padding: 8px 18px;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 1em;
       transition: background 0.2s;
       margin-left: 4px;
-      font-weight: bold;
+      font-weight: 600;
+      box-shadow: 0 2px 8px #0001;
     }
     .lang-btn:hover { background: #f7c873; }
     .content { max-width: 900px; margin: 32px auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 12px #0002; padding: 40px; }
@@ -158,32 +163,36 @@
       background: #ffa726;
       opacity: 1;
     }
-    /* 联系方式布局 */
-    .contact-flex {
+    /* 联系方式LOGO样式 */
+    .contact-logo-box {
+      position: absolute;
+      right: 36px;
+      bottom: 16px;
       display: flex;
       align-items: flex-end;
-      justify-content: space-between;
-      gap: 28px;
+      justify-content: flex-end;
     }
     .contact-logo {
-      max-width: 140px;
-      max-height: 70px;
-      border-radius: 8px;
+      width: 120px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #0001;
       background: #fff;
-      box-shadow: 0 2px 10px #0001;
-      margin-left: 12px;
+      object-fit: contain;
+    }
+    .contact-section {
+      position: relative;
+      min-height: 110px;
     }
     @media (max-width: 900px) {
       .header-content { flex-direction: column; align-items: flex-start; padding: 0 8px;}
-      .title-area-center { text-align: left; width: 100%; }
-      .site-title { font-size: 1.2em; }
-      .logo { height: 80px; }
-      .logo-slogan { font-size: 1em; }
+      .title-area-center { text-align: left; width: 100%; justify-content: flex-start; }
+      .site-title { font-size: 1.1em; padding: 10px 12px; }
+      .logo { height: 44px; }
+      .logo-box { padding: 8px 10px; }
       .carousel-container { width: 100%; height: 200px; }
-      .lang-area { justify-content: flex-start; }
-      .site-title-box { min-width: 180px; font-size: 1.1em; padding: 4px 0;}
-      .contact-flex { flex-direction: column; align-items: flex-start; gap: 10px; }
-      .contact-logo { margin-left: 0; margin-top: 8px; }
+      .contact-logo { width: 80px; }
+      .contact-logo-box { position: static; margin-top: 20px; }
     }
   </style>
   <script>
@@ -191,19 +200,14 @@
       document.querySelectorAll('.zh').forEach(e => e.style.display = (lang==='zh' ? '' : 'none'));
       document.querySelectorAll('.en').forEach(e => e.style.display = (lang==='en' ? '' : 'none'));
       // 视频切换
-      var videoZh = document.getElementById("video-zh");
-      var videoEn = document.getElementById("video-en");
-      if (videoZh && videoEn) {
-        if(lang === "zh") {
-          videoZh.style.display = "";
-          videoEn.style.display = "none";
-        } else {
-          videoZh.style.display = "none";
-          videoEn.style.display = "";
-        }
+      var video = document.getElementById('promo-video');
+      if(lang === 'zh') {
+        video.src = "https://www.youtube.com/embed/ttG3LCsfo4M";
+      } else {
+        video.src = "https://www.youtube.com/embed/tFLd9f15IjY";
       }
     }
-    // 轮播图自动播放
+    // 轮播图自动播放，40秒切换一次
     var carouselIndex = 0;
     var carouselTimer = null;
     function showCarousel(n, auto) {
@@ -221,7 +225,7 @@
       }
       if (!auto) {
         clearInterval(carouselTimer);
-        carouselTimer = setInterval(function() { showCarousel(carouselIndex + 1, true); }, 40000); // 40秒
+        carouselTimer = setInterval(function() { showCarousel(carouselIndex + 1, true); }, 40000);
       }
     }
     function carouselPrev() { showCarousel(carouselIndex - 1); }
@@ -232,69 +236,52 @@
       dots.forEach(function(dot, i) {
         dot.addEventListener('click', function() { showCarousel(i); });
       });
-      carouselTimer = setInterval(function() { showCarousel(carouselIndex + 1, true); }, 40000); // 40秒
-      switchLang('zh');
+      carouselTimer = setInterval(function() { showCarousel(carouselIndex + 1, true); }, 40000);
     });
   </script>
 </head>
 <body>
-  <!-- 头部 -->
   <div class="header">
     <div class="header-content">
-      <!-- LOGO区域 -->
+      <!-- 左侧 LOGO 和标语 -->
       <div class="logo-box">
         <img src="logo.png" alt="FullHouse Logistic Logo" class="logo">
-        <div class="logo-slogan">ON-TIME DELIVERY</div>
+        <span class="logo-slogan">ON-TIME DELIVERY</span>
       </div>
-      <!-- 公司名字区域 居中 -->
-      <div class="site-title-box">
+      <!-- 中间 公司名 -->
+      <div class="title-area-center">
         <span class="site-title">FullHouse Logistic</span>
       </div>
-      <!-- 语言切换按钮 -->
+      <!-- 右侧 语言切换按钮 -->
       <div class="lang-area">
         <button class="lang-btn" onclick="switchLang('zh')">中文</button>
         <button class="lang-btn" onclick="switchLang('en')">English</button>
       </div>
     </div>
   </div>
-
   <div class="content">
     <!-- 公司简介 / About Us -->
     <div class="section">
       <h2 class="zh">公司简介</h2>
       <h2 class="en" style="display:none;">About Us</h2>
-      <p class="zh">FullHouse Logistic是一家位于美国加利福尼亚州安大略市的专业海外仓，仓库面积40,000平方英尺。我们专注为中国跨境电商卖家及海外品牌商提供本地仓储、一件代发、退货处理、换标等全方位服务，助力客户高效拓展美国市场。</p>
-      <p class="en" style="display:none;">FullHouse Logistic is a professional fulfillment warehouse located in Ontario, California, with a warehouse area of 40,000 square feet. We provide comprehensive services including local warehousing, order fulfillment, returns processing, and relabeling for Chinese cross-border e-commerce sellers and overseas brands, helping clients efficiently expand in the US market.</p>
+      <p class="zh">FullHouse Logistic是一家位于美国加利福尼亚州安大略市的专业海外仓，仓库面积40,000平方英尺。我们专注为跨境电商卖家及海外品牌商提供本地仓储、一件代发、退货处理、换标等全方位服务，助力客户高效拓展美国市场。</p>
+      <p class="en" style="display:none;">FullHouse Logistic is a professional fulfillment warehouse located in Ontario, California, with a warehouse area of 40,000 square feet. We provide comprehensive services including local warehousing, order fulfillment, returns processing, and relabeling for cross-border e-commerce sellers and overseas brands, helping clients efficiently expand in the US market.</p>
     </div>
-
     <!-- 公司宣传视频 / Company Intro Video -->
     <div class="section">
       <h3 class="zh">公司宣传视频</h3>
       <h3 class="en" style="display:none;">Company Intro Video</h3>
-      <div style="width:100%;max-width:700px;">
-        <iframe 
-          id="video-zh"
-          width="680" height="380"
-          src="https://www.youtube.com/embed/ttG3LCsfo4M"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          style="margin:24px 0 24px 0; border-radius:12px; max-width:100%;">
-        </iframe>
-        <iframe 
-          id="video-en"
-          width="680" height="380"
-          src="https://www.youtube.com/embed/tFLd9f15IjY"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          style="margin:24px 0 24px 0; border-radius:12px; max-width:100%; display:none;">
-        </iframe>
-      </div>
+      <iframe 
+        id="promo-video"
+        width="680" height="380"
+        src="https://www.youtube.com/embed/ttG3LCsfo4M"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        style="margin:24px 0 24px 0; border-radius:12px; max-width:100%;">
+      </iframe>
     </div>
-
     <!-- 业务亮点 / Business Highlights -->
     <div class="section">
       <h3 class="zh">业务亮点</h3>
@@ -314,7 +301,6 @@
         <li>Return inspection, refurbishment, and after-sales services</li>
       </ul>
     </div>
-
     <!-- 运力保障 / Capacity Assurance -->
     <div class="section">
       <h3 class="zh">运力保障</h3>
@@ -328,7 +314,6 @@
         <li>Automated label system compares and matches the best shipping channels, supporting batch order printing.</li>
       </ul>
     </div>
-
     <!-- 合规承诺 / Compliance Commitment -->
     <div class="section">
       <h3 class="zh">合规承诺</h3>
@@ -341,10 +326,9 @@
       <ul class="en" style="display:none;">
         <li>No risky channels such as manipulated or delayed orders; all shipping labels come from authentic and compliant sources;</li>
         <li>Ensure account safety and logistics stability from the source, ideal for long-term stable cooperation.</li>
-        <li>We are committed to providing our clients with efficient and intelligent logistics optimization solutions, paired with attentive and thoughtful services to support steady business growth.</li>
+        <li>We are committed to providing customers with efficient and intelligent logistics optimization solutions, along with attentive and thoughtful service to help your business grow steadily.</li>
       </ul>
     </div>
-
     <!-- 主营业务 / Main Services -->
     <div class="section">
       <h3 class="zh">主营业务</h3>
@@ -362,7 +346,6 @@
         <li>Relabeling Services</li>
       </ul>
     </div>
-
     <!-- 服务对象 / Target Clients -->
     <div class="section">
       <h3 class="zh">服务对象</h3>
@@ -380,7 +363,6 @@
         <li>Trucking companies/Transloading companies</li>
       </ul>
     </div>
-
     <!-- 仓储业务能力 / Storage Capabilities -->
     <div class="section">
       <h3 class="zh">仓储业务能力</h3>
@@ -416,7 +398,6 @@
         <li>Supports flexible services like return inspection, relabeling, and bundled packing.</li>
       </ul>
     </div>
-
     <!-- 团队介绍 / Team Introduction -->
     <div class="section">
       <h3 class="zh">团队介绍</h3>
@@ -424,7 +405,6 @@
       <p class="zh">FullHouse Logistic核心运营团队拥有10年以上美国本地仓储物流行业经验。从小型仓库起步，实战管理过百万平方英尺级别的大型海外仓，擅长仓库规划、团队建设、流程优化等多环节运营管理，为客户提供高效、可靠的仓储及供应链解决方案。</p>
       <p class="en" style="display:none;">The core operation team of FullHouse Logistic has over 10 years of experience in the US warehousing and logistics industry. Starting from small-scale warehouses, the team has managed large-scale overseas warehouses of over one million square feet. We specialize in warehouse planning, team building, process optimization, and multi-link operation management, providing clients with efficient and reliable warehousing and supply chain solutions.</p>
     </div>
-
     <!-- Why Choose Us / 为什么选择我们 -->
     <div class="section">
       <h3 class="zh">为什么选择我们</h3>
@@ -442,7 +422,6 @@
         <li>For clients focused on sales but less familiar with warehousing and logistics, we can serve as your “logistics consultant,” allowing you to focus on growth and sales.</li>
       </ul>
     </div>
-
     <!-- 自动播放轮播图 Gallery Section -->
     <div class="section">
       <h3 class="zh">仓库与团队风采</h3>
@@ -470,21 +449,20 @@
         </div>
       </div>
     </div>
-
     <div class="divider"></div>
     <!-- 联系方式 / Contact Us -->
-    <div class="section contact-flex">
-      <div>
-        <h3 class="zh">联系方式</h3>
-        <h3 class="en" style="display:none;">Contact Us</h3>
-        <ul>
-          <li>Email: yuan@fullhouselogistic.com</li>
-          <li class="zh">地址: 美国加利福尼亚州安大略市</li>
-          <li class="en" style="display:none;">Address: Ontario, California, USA</li>
-          <li>电话: 1 (909)-676-3616</li>
-        </ul>
+    <div class="section contact-section">
+      <h3 class="zh">联系方式</h3>
+      <h3 class="en" style="display:none;">Contact Us</h3>
+      <ul>
+        <li>Email: yuan@fullhouselogistic.com</li>
+        <li class="en" style="display:none;">Address: Ontario, California, 91761 USA</li>
+        <li class="zh">地址: 美国加利福尼亚州安大略市 91761</li>
+        <li>电话: 1 (909)-676-3616</li>
+      </ul>
+      <div class="contact-logo-box">
+        <img src="2025-06-09T18-04-03.320Z.png" alt="FullHouse Logo" class="contact-logo">
       </div>
-      <img src="2025-06-09T16-51-43.344Z.png" class="contact-logo" alt="FullHouse Logo">
     </div>
   </div>
   <div class="footer">
@@ -493,3 +471,4 @@
   </div>
 </body>
 </html>
+
